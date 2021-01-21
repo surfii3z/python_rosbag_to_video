@@ -2,13 +2,17 @@
 
 This repo is the python script to extract video from rosbag
 
+Work right away with `python2`.
+
+It does NOT work with `python3` for now because of cv_bridge.
+
 # Dependencies
 Install the following package using pip
 ```bash
 # Cryptodome
-pip3 install pycryptodomex
+pip install pycryptodomex
 # gnupg
-pip3 install gnupg
+pip install gnupg
 ```
 
 # Quick Start

@@ -23,3 +23,5 @@ python extract.py
 # might need to install ffmpeg
 ffmpeg -framerate 30 -i frame_%06d.png -codec copy output.mp4
 ```
+
+3) change the topic name for rgb sequences in [extract.py](https://github.com/surfii3z/python_rosbag_to_video/blob/4c1a43e44918d7f48c3a0c7f66caf91f757bc016/extract.py#L21)

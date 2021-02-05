@@ -9,8 +9,9 @@ from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
 from cv_bridge import CvBridgeError
 
-BAG_PATH = ''
-OUTPUT_PATH = ''
+BAG_PATH = '/home/jedsadakorn/Desktop/bag_2/workbench_boxes_low_alt_2.bag'
+OUTPUT_PATH = '/home/jedsadakorn/git/python_rosbag_to_video/output/workbench_boxes_low_alt_2/'
+SAMPLE_FREQ = 2
 
 class ImageFromBag():
 
@@ -18,12 +19,15 @@ class ImageFromBag():
         self.bridge = CvBridge()
 
         with rosbag.Bag(bag_path) as bag:
+            image_counter = 0
             for idx , (topic, msg, t) in enumerate(bag.read_messages(topics=['/camera/color/image_raw'])):
                 try:
-                    cv_image = self.bridge.imgmsg_to_cv2(msg)
-                    image_name = 'frame_{:06d}.png'.format(idx)
-                    cv2.imwrite(output_path + image_name, cv_image)
-                    print("Write image: {}".format(image_name))
+                    if idx % SAMPLE_FREQ == 0:
+                        cv_image = self.bridge.imgmsg_to_cv2(msg)
+                        image_name = '{:06d}.png'.format(image_counter)
+                        cv2.imwrite(output_path + image_name, cv_image)
+                        print("Write image: {}".format(image_name))
+                        image_counter += 1
                 except CvBridgeError as e:
                     print(e)
                 

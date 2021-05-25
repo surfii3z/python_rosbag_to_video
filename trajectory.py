@@ -24,7 +24,7 @@ class TrajectoryFromBag():
                     if idx % SAMPLE_FREQ == 1:
                         x, y, z  = msg.pose.position.x, msg.pose.position.y, msg.pose.position.z
                         qx, qy, qz, qw = msg.pose.orientation.x, msg.pose.orientation.y, msg.pose.orientation.z, msg.pose.orientation.w
-                        f.write("{} {} {} {} {} {} {} {}\n".format(idx, y, -z, x, qx, qy, qz, qw))
+                        f.write("{} {} {} {} {} {} {} {}\n".format(idx, -y, -z, x, qx, qy, qz, qw))
                 print("Finish writing")
                 
                 
